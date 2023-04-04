@@ -19,4 +19,4 @@ def modulus(x, y):
     print(f"{x % y}\n")
 
 def carat(x, y):
-    print(f"{x ^ y}\n")
+    print(f"{x ** y}\n")
