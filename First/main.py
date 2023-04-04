@@ -2,16 +2,20 @@ from sys import exit
 import os
 import operations
 
+#Defining a function to clear the screen based on the OS
 def clear():
-    if os.name == "nt":
+    if os.name == "nt": #Windows OS is also knonw as 'nt'
         os.system("cls")
-    else:
+    else: #In case of mac or Linux
         os.system("clear")
 
+
+clear()
 print("!!!Welcome!!!")
 print("Press ENTER to continue or type 'exit' to close...")
 status = input()
 
+#While loop so that the program dosen't stop after one excecution
 while True:
 
     if status == "exit":
@@ -24,7 +28,7 @@ while True:
         num2 = int(input("Second number: "))
     except Exception as error:
         print(f"{error = }")
-        print("Oops!! You did not enter a number!\nPlease restart the program")
+        print("It was a vaue error!\nPlease restart the program\n")
         exit(0x1)
         
 
@@ -37,8 +41,12 @@ while True:
             operations.multiply(num1, num2)
         case "/":
             operations.divide(num1, num2)
+        case "%":
+            operations.modulus(num1, num2)
+        case "^":
+            operations.carat(num1, num2)
         case _:
-            print("Invalid operator")
+            print("Invalid operator\n")
 
     print("Press any ENTER to continue or type 'exit' to close...")     
     status = input()
