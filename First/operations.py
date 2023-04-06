@@ -11,7 +11,7 @@ def multiply(x, y):
 
 def divide(x, y):
     if y == 0:
-        print("Cannot divide number by Zero")
+        print("Cannot Divide Number by Zero\n")
     else:
         print(f"{x / y}\n")
 
@@ -20,3 +20,9 @@ def modulus(x, y):
 
 def carat(x, y):
     print(f"{x ** y}\n")
+
+def floordivision(x, y):
+    if y == 0:
+        print("Cannot Divide Number by Zero\n")
+    else:
+        print(f"{x // y}\n")

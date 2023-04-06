@@ -26,10 +26,10 @@ while True:
         num1 = int(input("First number: "))
         operator = input("Operation: ")
         num2 = int(input("Second number: "))
-    except Exception as error:
+    except Exception as error: #Checking for value error in case the user inputs a letter/letters in the number field
         print(f"{error = }")
         print("It was a vaue error!\nPlease restart the program\n")
-        exit(0x1)
+        exit(0x1) #Expicitly ending the program because of value error
         
 
     match operator:
@@ -45,6 +45,8 @@ while True:
             operations.modulus(num1, num2)
         case "^":
             operations.carat(num1, num2)
+        case "//":
+            operations.floordivision(num1, num2)
         case _:
             print("Invalid operator\n")
 
