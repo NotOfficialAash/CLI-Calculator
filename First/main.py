@@ -36,9 +36,8 @@ def perform_operation(num1, operator, num2):
         "//": operations.floordivision,
     }
     finaloperation = dictofoperations.get(operator)
-    if finaloperation:
-        result = finaloperation(num1, num2)
-        print(f"{num1} {operator} {num2} = {result}\n")
+    if finaloperation != None:
+        finaloperation(num1, num2)
     else:
         print("Invalid operator.")
 
@@ -54,7 +53,7 @@ def main():
         clear()
         num1, operator, num2 = get_input()
         perform_operation(num1, operator, num2)
-        input("Press ENTER to continue or type 'exit' to close...")
+        print("Press ENTER to continue or type 'exit' to close...")
         status = input()
     clear()
 
