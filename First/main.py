@@ -1,55 +1,63 @@
-from sys import exit
 import os
 import operations
 
-#Defining a function to clear the screen based on the OS
+
 def clear():
-    if os.name == "nt": #Windows OS is also knonw as 'nt'
+    #Clears the terminal screen.
+    if os.name == "nt":
         os.system("cls")
-    else: #In case of mac or Linux
+    else:
         os.system("clear")
 
 
-clear()
-print("!!!Welcome!!!")
-print("Press ENTER to continue or type 'exit' to close...")
-status = input()
-
-#While loop so that the program dosen't stop after one excecution
-while True:
-
-    if status == "exit":
-     break
-    
-    clear()
+def get_input():
+    #Prompts the user for input and returns the numbers and operator.
     try:
         num1 = int(input("First number: "))
         operator = input("Operation: ")
         num2 = int(input("Second number: "))
-    except Exception as error: #Checking for value error in case the user inputs a letter/letters in the number field
+        return num1, operator, num2
+
+    except ValueError as error:
         print(f"{error = }")
-        print("It was a vaue error!\nPlease restart the program\n")
-        exit(0x1) #Expicitly ending the program because of value error
-        
+        print("It was a value error!\nPlease restart the program.\n")
+        exit(1)
 
-    match operator:
-        case "+":
-            operations.add(num1, num2)
-        case "-":
-            operations.subtract(num1, num2)
-        case "*":
-            operations.multiply(num1, num2)
-        case "/":
-            operations.divide(num1, num2)
-        case "%":
-            operations.modulus(num1, num2)
-        case "^":
-            operations.carat(num1, num2)
-        case "//":
-            operations.floordivision(num1, num2)
-        case _:
-            print("Invalid operator\n")
 
-    print("Press any ENTER to continue or type 'exit' to close...")     
-    status = input()
+def perform_operation(num1, operator, num2):
+    #Performs the operation based on the operator symbol.
+    dictofoperations = {
+        "+": operations.add,
+        "-": operations.subtract,
+        "*": operations.multiply,
+        "/": operations.divide,
+        "%": operations.modulus,
+        "^": operations.carat,
+        "//": operations.floordivision,
+    }
+    finaloperation = dictofoperations.get(operator)
+    if finaloperation:
+        result = finaloperation(num1, num2)
+        print(f"{num1} {operator} {num2} = {result}\n")
+    else:
+        print("Invalid operator.")
+
+
+def main():
+    #Main function to run the calculator.
     clear()
+    print("!!!Welcome!!!")
+    print("Press ENTER to continue or type 'exit' to close...")
+    status = input()
+
+    while status != "exit":
+        clear()
+        num1, operator, num2 = get_input()
+        perform_operation(num1, operator, num2)
+        input("Press ENTER to continue or type 'exit' to close...")
+        status = input()
+    clear()
+
+
+if __name__ == "__main__":
+    main()
