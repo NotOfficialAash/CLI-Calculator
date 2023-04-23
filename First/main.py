@@ -1,3 +1,5 @@
+#ONLY Python Documentation and W3Schools' File Handling Tutorials have been used as reference
+
 import os
 import operations
 import time
